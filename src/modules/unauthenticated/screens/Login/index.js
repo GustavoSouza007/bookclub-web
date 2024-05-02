@@ -6,14 +6,14 @@ export const LoginScreen = () => {
   return (
     <Flex w="100vw" h="100vh" flexDir="row">
       <Flex
-        w="40%"
+        w={['100%', '100%', '50%', '50%', '40%']}
         h="100%"
         flexDir="column"
-        alignItems="flex-start"
+        alignItems="center"
         justifyContent="center"
-        paddingLeft="112px"
+        padding={['24px', '48px', '48px', '48px']}
       >
-        <Flex w="416px" flexDir="column">
+        <Flex w={['100%', '416px', '100%', '416px']} flexDir="column">
           <Image w="160px" h="48px" src="/img/logo.svg" alt="BookClub Logo" />
           <Text.ScreenTitle mt="48px">Login</Text.ScreenTitle>
           <Input mt="24px" placeholder="email" />
@@ -29,7 +29,7 @@ export const LoginScreen = () => {
         </Flex>
       </Flex>
       <Flex
-        w="60%"
+        w={['0%', '0%', '50%', '50%', '60%']}
         h="100%"
         backgroundImage="url('/img/auth-background.svg')"
         backgroundSize="cover"
