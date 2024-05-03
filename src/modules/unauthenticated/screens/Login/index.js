@@ -6,6 +6,7 @@ import * as Yup from 'yup'
 
 export const LoginScreen = () => {
   const navigate = useNavigate()
+
   const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues: {
       email: '',
@@ -36,13 +37,14 @@ export const LoginScreen = () => {
           <Image w="160px" h="48px" src="/img/logo.svg" alt="BookClub Logo" />
           <Text.ScreenTitle mt="48px">Login</Text.ScreenTitle>
           <Input
+            type="email"
             id="email"
             name="email"
             value={values.email}
-            mt="24px"
-            placeholder="Email"
             onChange={handleChange}
             error={errors.email}
+            mt="24px"
+            placeholder="Email"
           />
           <Input.Password
             id="password"
