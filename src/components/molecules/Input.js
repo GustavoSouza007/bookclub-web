@@ -8,7 +8,12 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { useState } from 'react'
 
 export const Input = (props) => (
-  <ChakraInput h="56px" focusBorderColor="brand.primary" {...props} />
+  <ChakraInput
+    h="56px"
+    focusBorderColor="brand.primary"
+    placeholder={props.placeholder}
+    {...props}
+  />
 )
 
 Input.Password = (props) => {
@@ -20,7 +25,7 @@ Input.Password = (props) => {
         focusBorderColor="brand.primary"
         pr="4.5rem"
         type={show ? 'text' : 'password'}
-        placeholder="senha"
+        placeholder={props.placeholder}
       />
       <InputRightElement h="100%">
         <Button
