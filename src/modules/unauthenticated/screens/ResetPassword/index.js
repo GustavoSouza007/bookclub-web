@@ -1,11 +1,37 @@
-import { Flex, Image } from '@chakra-ui/react'
+import { Flex, Image, useToast } from '@chakra-ui/react'
 import { Text, Input, Button, Link } from 'components'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useMutation } from 'react-query'
+import { resetPasswordCall } from 'services/api/requests'
 
 export const ResetPasswordScreen = () => {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const toast = useToast()
+  const mutation = useMutation((data) => resetPasswordCall(data), {
+    onError: (error) => {
+      toast({
+        title: 'Falha na requisição.',
+        description:
+          error?.response?.data?.error || 'Por favor, tente novamente',
+        status: 'error',
+        duration: 3000,
+        isClosable: true
+      })
+    },
+    onSuccess: () => {
+      toast({
+        title: 'Senha atualizada com sucesso!',
+        status: 'success',
+        duration: 3000,
+        isClosable: true
+      })
+      navigate('/')
+    }
+  })
+
   const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues: {
       token: '',
@@ -25,7 +51,11 @@ export const ResetPasswordScreen = () => {
         .oneOf([Yup.ref('password'), null], 'Senhas não são iguais.')
     }),
     onSubmit: (data) => {
-      navigate('/')
+      mutation.mutate({
+        email: searchParams.get('email'),
+        token: data.token,
+        password: data.password
+      })
     }
   })
 
@@ -74,7 +104,11 @@ export const ResetPasswordScreen = () => {
             placeholder="Confirmar senha"
           />
 
-          <Button onClick={handleSubmit} mt="24px">
+          <Button
+            isLoading={mutation.isLoading}
+            onClick={handleSubmit}
+            mt="24px"
+          >
             Salvar
           </Button>
           <Flex flexDir="column" alignItems="center" mt="48px">
