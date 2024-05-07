@@ -1,4 +1,5 @@
 import { Flex, Image, useToast } from '@chakra-ui/react'
+import { useDispatch } from 'react-redux'
 import { Text, Input, Link, Button } from 'components'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
@@ -6,8 +7,10 @@ import * as Yup from 'yup'
 import { useMutation } from 'react-query'
 import { loginCall } from 'services/api/requests'
 import { saveItem } from 'services/storage'
+import { setAll } from 'services/store/slices/user'
 
 export const LoginScreen = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const toast = useToast()
   const mutation = useMutation((newUser) => loginCall(newUser), {
@@ -29,6 +32,12 @@ export const LoginScreen = () => {
         isClosable: true
       })
       saveItem('@bookclub_token', data?.data?.token)
+      dispatch(
+        setAll({
+          user: data?.data?.user,
+          token: data?.data?.token
+        })
+      )
       navigate('/home')
     }
   })
