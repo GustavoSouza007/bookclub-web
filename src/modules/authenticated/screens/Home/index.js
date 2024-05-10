@@ -1,11 +1,7 @@
 import { Flex } from '@chakra-ui/react'
-import { Navbar, BookList } from 'components'
-import { useQuery } from 'react-query'
-import { getHighlightedBooks } from 'services/api/requests'
+import { Navbar, BookList, CategoryList } from 'components'
 
 export const HomeScreen = () => {
-  const { data } = useQuery('highlighted', getHighlightedBooks)
-
   return (
     <Flex flexDir="column">
       <Navbar />
@@ -25,7 +21,8 @@ export const HomeScreen = () => {
           backgroundRepeat="no-repeat"
         />
       </Flex>
-      <BookList data={data?.data} />
+      <BookList />
+      <CategoryList />
     </Flex>
   )
 }
