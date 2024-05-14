@@ -9,8 +9,8 @@ export const BookList = () => {
   return (
     <Flex
       flexDir="column"
-      mt="48px"
-      paddingX={['24px', '48px', '48px', '112px']}
+      mt={['24px', '48px']}
+      paddingX={['24px', '24px', '48px', '48px', '112px']}
     >
       <Text.ScreenTitle>Destaques</Text.ScreenTitle>
       <Flex
@@ -18,7 +18,13 @@ export const BookList = () => {
         w="100%"
         alignItems="center"
         justifyContent="space-between"
-        mt="24px"
+        mt={['12px', '12px', '24px']}
+        overflowX={['scroll', 'scroll', 'scroll', 'scroll', 'scroll', 'hidden']}
+        css={{
+          '::-webkit-scrollbar': {
+            display: 'none'
+          }
+        }}
       >
         {data?.data &&
           data?.data.map((item) => (

@@ -19,7 +19,7 @@ export const CategoryCard = ({ id, name, selected, onClick }) => {
       cursor="pointer"
     >
       <Text
-        fontSize="14px"
+        fontSize={['12px', '14px']}
         fontWeight="500"
         color={selected ? 'brand.white' : 'brand.black'}
       >
