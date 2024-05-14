@@ -1,13 +1,17 @@
 /* eslint-disable camelcase */
 import { Flex } from '@chakra-ui/react'
 import { Text } from 'components/atoms'
+import { useNavigate } from 'react-router-dom'
 
-export const BookCard = ({ cover_url, name, author }) => {
+export const BookCard = ({ id, cover_url, name, author }) => {
+  const navigate = useNavigate()
   return (
     <Flex
       flexDir="column"
       alignItems="center"
       mr={['24px', '24px', '24px', '28px', '28px', '0px']}
+      cursor="pointer"
+      onClick={() => navigate(`/book-detail/${id}`)}
     >
       <Flex
         w={['126px', '126px', '134px', '140px', '160px']}
