@@ -82,31 +82,55 @@ export const BookDetailScreen = () => {
     <Flex flexDir="column">
       <Navbar />
       <Flex
-        flexDir="row"
+        flexDir={['column', 'column', 'column', 'row']}
+        alignItems={['center', 'center', 'center', 'flex-start']}
+        justifyContent={['center', 'center', 'center', 'flex-start']}
         w="100%"
         mt={['24px', '24px', '32px', '48px']}
         paddingX={['24px', '24px', '48px', '48px', '112px']}
       >
         <Flex
-          w={['238px']}
-          h={['358px']}
+          w={['190px', '210px', '210px', '266px', '310px', '238px']}
+          h={['276px', '296px', '296px', '300px', '358px', '358px']}
           borderRadius={['12px']}
           background={`url(${data?.data?.book?.cover_url})`}
           backgroundSize="cover"
           backgroundPosition={['center']}
           backgroundRepeat="no-repeat"
+          border="solid"
+          borderWidth="1px"
+          borderColor="brand.black"
         />
 
-        <Flex w="70%" flexDir="column" mx="48px">
-          <Text.ScreenTitle fontSize="24px">
+        <Flex
+          mt={['24px', '24px', '0px']}
+          w={['100%', '100%', '100%', '70%']}
+          flexDir="column"
+          mx={['0px', '0px', '48px']}
+        >
+          <Text.ScreenTitle
+            mt={['0px', '0px', '12px', '0px']}
+            fontSize="24px"
+            textAlign={['center', 'center', 'center', 'left']}
+          >
             {data?.data?.book?.name}
           </Text.ScreenTitle>
-          <Text mt="6px" fontSize="16px" color="brand.greyDark">
+          <Text
+            mt="6px"
+            fontSize="16px"
+            color="brand.greyDark"
+            textAlign={['center', 'center', 'center', 'left']}
+          >
             {data?.data?.book?.author?.name}
           </Text>
 
           <Text.ScreenTitle mt="16px">Informações</Text.ScreenTitle>
-          <Flex mt="4px" w="100%" flexDir="row" justifyContent="space-between">
+          <Flex
+            mt="4px"
+            w="100%"
+            flexDir={['column', 'row']}
+            justifyContent={['flex-start', 'space-between']}
+          >
             <Text fontSize="14px" color="brand.greyDark">
               Categoria: {data?.data?.book?.category?.name}
             </Text>
@@ -114,7 +138,7 @@ export const BookDetailScreen = () => {
               Páginas: {data?.data?.book?.pages}
             </Text>
             <Text fontSize="14px" color="brand.greyDark">
-              Ano de lançamento:
+              Ano de lançamento:{' '}
               {new Date(data?.data?.book?.release_date).getFullYear()}
             </Text>
           </Flex>
@@ -128,7 +152,12 @@ export const BookDetailScreen = () => {
             {data?.data?.book?.synopsis}
           </Text>
         </Flex>
-        <Flex>
+        <Flex
+          w={['100%', 'auto']}
+          alignItems={['center', 'flex-start']}
+          justifyContent={['center', 'flex-start']}
+          mt={['24px', '24px', '24px', '0px']}
+        >
           <Button
             isLoading={
               isLoading ||
