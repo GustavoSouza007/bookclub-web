@@ -1,7 +1,9 @@
 import { Flex, Image } from '@chakra-ui/react'
 import { SearchBar, USerMenu } from 'components/molecules'
+import { useNavigate } from 'react-router-dom'
 
 export const Navbar = () => {
+  const navigate = useNavigate()
   return (
     <Flex
       w="100vw"
@@ -17,6 +19,8 @@ export const Navbar = () => {
           h="48px"
           src="/img/logo.svg"
           alt="BookClub Logo"
+          cursor="pointer"
+          onClick={() => navigate('/home')}
         />
         <USerMenu />
       </Flex>
