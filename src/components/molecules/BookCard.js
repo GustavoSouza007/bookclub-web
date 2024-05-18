@@ -15,8 +15,8 @@ export const BookCard = ({ id, cover_url, name, author }) => {
       onClick={() => navigate(`/book-detail/${id}`)}
     >
       <Flex
-        w={['126px', '126px', '134px', '140px', '160px']}
-        h={['180px', '180px', '188px', '194px', '230px']}
+        w={['136px', '146px', '156px', '156px', '160px']}
+        h={['200px', '210px', '220px', '220px', '230px']}
         borderRadius={['8px', '8px', '10px', '12px']}
         background={`url(${cover_url})`}
         backgroundSize="cover"
@@ -54,8 +54,8 @@ BookCard.Category = ({ id, cover_url, name, author }) => {
       onClick={() => navigate(`/book-detail/${id}`)}
     >
       <Flex
-        w={['126px', '126px', '134px', '140px', '160px']}
-        h={['180px', '180px', '188px', '194px', '230px']}
+        w={['136px', '146px', '156px', '156px', '160px']}
+        h={['200px', '210px', '220px', '220px', '230px']}
         borderRadius={['8px', '8px', '12px']}
         background={`url(${cover_url})`}
         backgroundSize="cover"
