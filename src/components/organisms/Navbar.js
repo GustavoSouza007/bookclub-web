@@ -2,7 +2,7 @@ import { Flex, Image } from '@chakra-ui/react'
 import { SearchBar, USerMenu } from 'components/molecules'
 import { useNavigate } from 'react-router-dom'
 
-export const Navbar = () => {
+export const Navbar = ({ query, setQuery }) => {
   const navigate = useNavigate()
   return (
     <Flex
@@ -31,7 +31,7 @@ export const Navbar = () => {
         alignItems="center"
         justifyContent="center"
       >
-        <SearchBar />
+        <SearchBar query={query} setQuery={setQuery} />
       </Flex>
     </Flex>
   )
