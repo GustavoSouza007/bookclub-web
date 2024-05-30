@@ -1,11 +1,16 @@
-import { Flex, Spinner } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { AuthorCard } from 'components/molecules'
-import { Text } from 'components/atoms'
+import { Text, Loader, EmptyMessage } from 'components/atoms'
 
 export const AuthorList = ({ data, isLoading }) => {
   return (
     <Flex flexDir="column" mt={['24px', '48px']}>
       <Text.ScreenTitle>Autores</Text.ScreenTitle>
+      {isLoading && <Loader />}
+      {(!data || data?.length === 0 || !data) && (
+        <EmptyMessage>Nenhum livro encontrado.</EmptyMessage>
+      )}
+
       <Flex
         flexDir="row"
         w="100%"
@@ -19,16 +24,6 @@ export const AuthorList = ({ data, isLoading }) => {
           }
         }}
       >
-        {isLoading && (
-          <Flex alignItems="center" justifyContent="center">
-            <Spinner />
-          </Flex>
-        )}
-        {!isLoading && data?.length === 0 && (
-          <Flex alignItems="center" justifyContent="center">
-            <Text>Nenhum autor encontrado.</Text>
-          </Flex>
-        )}
         {data &&
           data?.map((item) => (
             <AuthorCard key={`author_${item.id}`} {...item} />

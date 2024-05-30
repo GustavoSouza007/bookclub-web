@@ -8,7 +8,7 @@ import { BiUser, BiCheckShield } from 'react-icons/bi'
 import { HiOutlineClipboard, HiOutlineLogout } from 'react-icons/hi'
 import { IoDocumentTextOutline } from 'react-icons/io5'
 
-export const USerMenu = () => {
+export const USerMenu = ({ setShowModal }) => {
   const userStore = useSelector((state) => state.user)
   const navigate = useNavigate()
 
@@ -24,14 +24,14 @@ export const USerMenu = () => {
       id: 1,
       icon: BiUser,
       text: 'Dados Pessoais',
-      onClick: () => navigate('/'),
+      onClick: () => setShowModal('user'),
       divider: false
     },
     {
       id: 2,
       icon: BiCheckShield,
       text: 'Alterar senha',
-      onClick: () => navigate('/'),
+      onClick: () => setShowModal('password'),
       divider: true
     },
     {
@@ -45,7 +45,7 @@ export const USerMenu = () => {
       id: 4,
       icon: HiOutlineClipboard,
       text: 'Política de privacidade',
-      onClick: () => navigate('/'),
+      onClick: () => setShowModal('privacy-policy'),
       divider: true
     },
     {

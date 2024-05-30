@@ -1,8 +1,8 @@
-import { Flex, Spinner } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { BookCard } from 'components/molecules'
-import { Text } from 'components/atoms'
+import { Text, Loader, EmptyMessage } from 'components/atoms'
 
-export const BookList = ({ title, data, isLoading }) => {
+export const BookList = ({ title, data }) => {
   return (
     <Flex
       flexDir="column"
@@ -23,11 +23,6 @@ export const BookList = ({ title, data, isLoading }) => {
           }
         }}
       >
-        {isLoading && (
-          <Flex alignItems="center" justifyContent="center">
-            <Spinner />
-          </Flex>
-        )}
         {data &&
           data?.map((item) => <BookCard key={`book_${item.id}`} {...item} />)}
       </Flex>
@@ -39,6 +34,10 @@ BookList.Search = ({ title, data, isLoading }) => {
   return (
     <Flex flexDir="column" mt={['24px', '48px']}>
       <Text.ScreenTitle>{title}</Text.ScreenTitle>
+      {isLoading && <Loader />}
+      {(!data || data?.length === 0) && (
+        <EmptyMessage>Nenhum livro encontrado.</EmptyMessage>
+      )}
       <Flex
         flexDir="row"
         w="100%"
@@ -52,17 +51,6 @@ BookList.Search = ({ title, data, isLoading }) => {
           }
         }}
       >
-        {isLoading && (
-          <Flex alignItems="center" justifyContent="center">
-            <Spinner />
-          </Flex>
-        )}
-        {!data ||
-          (!isLoading && data?.length === 0 && (
-            <Flex alignItems="center" justifyContent="center">
-              <Text>Nenhum livro encontrado.</Text>
-            </Flex>
-          ))}
         {data &&
           data?.map((item) => (
             <BookCard.Category key={`book_${item.id}`} {...item} />
