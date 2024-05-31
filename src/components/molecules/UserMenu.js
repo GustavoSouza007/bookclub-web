@@ -69,6 +69,7 @@ export const USerMenu = ({ setShowModal, onLogout }) => {
             borderColor="brand.primary"
             bg="brand.greyLight"
             color="brand.black"
+            mr="6px"
           />
           <Flex display={['none', 'none', 'none', 'flex']}>
             <Text maxWidth="140px" fontWeight="bold" noOfLines={1}>
