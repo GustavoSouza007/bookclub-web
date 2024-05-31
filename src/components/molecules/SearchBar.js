@@ -15,6 +15,7 @@ export const SearchBar = ({ query, setQuery }) => {
     <Flex
       w={['100%', '100%', '478px']}
       h="52px"
+      mr={['0px', '0px', '0px', '20px', '0px']}
       bg="brand.greyLight"
       borderRadius="12px"
     >

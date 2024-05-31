@@ -8,7 +8,7 @@ import { BiUser, BiCheckShield } from 'react-icons/bi'
 import { HiOutlineClipboard, HiOutlineLogout } from 'react-icons/hi'
 import { IoDocumentTextOutline } from 'react-icons/io5'
 
-export const USerMenu = ({ setShowModal }) => {
+export const USerMenu = ({ setShowModal, onLogout }) => {
   const userStore = useSelector((state) => state.user)
   const navigate = useNavigate()
 
@@ -38,7 +38,7 @@ export const USerMenu = ({ setShowModal }) => {
       id: 3,
       icon: IoDocumentTextOutline,
       text: 'Termos de uso',
-      onClick: () => navigate('/'),
+      onClick: () => setShowModal('terms'),
       divider: false
     },
     {
@@ -52,7 +52,7 @@ export const USerMenu = ({ setShowModal }) => {
       id: 5,
       icon: HiOutlineLogout,
       text: 'Logout',
-      onClick: () => navigate('/'),
+      onClick: () => onLogout(),
       divider: false
     }
   ]
@@ -69,10 +69,9 @@ export const USerMenu = ({ setShowModal }) => {
             borderColor="brand.primary"
             bg="brand.greyLight"
             color="brand.black"
-            mr={['6px', '12px']}
           />
           <Flex display={['none', 'none', 'none', 'flex']}>
-            <Text fontWeight="bold" maxlenght="40px">
+            <Text maxWidth="140px" fontWeight="bold" noOfLines={1}>
               {userStore?.user?.name}
             </Text>
           </Flex>

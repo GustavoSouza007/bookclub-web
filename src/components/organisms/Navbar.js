@@ -3,13 +3,30 @@ import { Flex, Image } from '@chakra-ui/react'
 import { SearchBar, USerMenu } from 'components/molecules'
 import { useNavigate } from 'react-router-dom'
 import { UserModal } from './UserModal'
+import { PasswordModal } from './PasswordModal'
+import { TermsModal } from './TermsModal'
+import { PrivacyPolicyModal } from './PrivacyPolicyModal'
+import { useDispatch } from 'react-redux'
+import { setAll } from 'services/store/slices/user'
 
 export const Navbar = ({ query, setQuery }) => {
   const [showModal, setShowModal] = useState()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const onCLoseModal = () => {
     setShowModal(null)
+  }
+
+  const onLogout = () => {
+    localStorage.clear()
+    dispatch(
+      setAll({
+        user: null,
+        token: null
+      })
+    )
+    navigate('/')
   }
 
   return (
@@ -30,7 +47,7 @@ export const Navbar = ({ query, setQuery }) => {
           cursor="pointer"
           onClick={() => navigate('/home')}
         />
-        <USerMenu setShowModal={setShowModal} />
+        <USerMenu onLogout={onLogout} setShowModal={setShowModal} />
       </Flex>
       <Flex
         w={['100%', '80%', '50%']}
@@ -42,6 +59,11 @@ export const Navbar = ({ query, setQuery }) => {
         <SearchBar query={query} setQuery={setQuery} />
       </Flex>
       {showModal === 'user' && <UserModal onClose={onCLoseModal} />}
+      {showModal === 'password' && <PasswordModal onClose={onCLoseModal} />}
+      {showModal === 'terms' && <TermsModal onClose={onCLoseModal} />}
+      {showModal === 'privacy-policy' && (
+        <PrivacyPolicyModal onClose={onCLoseModal} />
+      )}
     </Flex>
   )
 }
