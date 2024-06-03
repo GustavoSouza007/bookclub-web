@@ -1,5 +1,7 @@
 # BookClub
 
+[![BookClub Demo](/public/img/demo.png 'BookClub Demo')](https://github.com/GustavoSouza007/bookclub-web/blob/main/public/img/demo.png)
+
 ## Description
 
 The app is made in React.js, and its main function is to function as a virtual library.
